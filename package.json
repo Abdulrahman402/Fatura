@@ -1,0 +1,41 @@
+{
+  "name": "fatura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.10",
+    "pm2": "^5.2.0",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon app.js",
+    "start": "NODE_ENV=production pm2 start app.js -i 0",
+    "test": "NODE_ENV=test jest --watchAll --verbose --maxWorkers=1 --forceExit --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdulrahman402/fatura.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abdulrahman402/fatura/issues"
+  },
+  "homepage": "https://github.com/Abdulrahman402/fatura#readme"
+}
