@@ -1,43 +1,51 @@
 # Fatura
 
-Fatura is a simple software application designed to authenticate, authorize users requests and give users some abilities.
+Fatura is a simple software service designed to authenticate, authorize users requests and handle roles permissions.
 
 # Technologies used
 
-ExpressJS, MongoDB, Mongoose, JWT, Cookies, PM2 and Jest.
+- ExpressJS
+- MongoDB
+- Mongoose
+- JWT
+- Cookies
+- PM2
+- Jest
+- supertest
 
-# Application setup and run
+# How to setup
 
-1- Clone it to your machine.  
-2- Add the three .env files (development.env, test.env, production.env).
+1. Clone it to your machine.
 
-- Four variables are needed ("PORT", "MONGODB_URL", "ACCESS_SECRET", "REFRESH_SECRET").
+   > git clone https://github.com/Abdulrahman402/Fatura.git
 
-3- In command line type "npm i".
+2. Install dependencies
 
-4- Three different scripts to run the application in three different environments.
+   npm install
 
-- "npm run dev" to run in development environment.
-- "npm run test" to run in test environment.
-- "npm run start" to run in production environment.
+3. Add .env files like example.env (development.env, test.env, production.env).
+
+4. How to test
+
+- npm run test
 
 # Files structure & details
 
-1- app.js & server.js
+1. app.js & server.js
 
 - We use seperate files to run our application since the .listen method generates errors with "supertest" module.
 
-2- Startup
+2. Startup
 
 - DB.js: includes the database connection code.
 - Routes.js: includes middlewares added to the app.
 
-3- Services/JWT
+3. Services/JWT
 
 - generateAccess.js: Here we generate access token with payload "\_id" and "role" with expiration 5 minutes.
 - generateRefresh.js: Here we generate refresh token with payload "\_id" and "role" with expiration 1 year.
 
-4- Middlewares
+4. Middlewares
 
 - auth.js: Here we check if the access token is valid or not.
 - verifyRefresh.js: Here we check if the refresh token is valid or not.
@@ -46,17 +54,17 @@ ExpressJS, MongoDB, Mongoose, JWT, Cookies, PM2 and Jest.
 
         Note: error.js works alongside the module "express-async-errors"
 
-5- Routes
+5. Routes
 
 - It includes all assigned routes with protection middlewares on them.
 
-6- Models
+6. Models
 
 - It includes MongoDB schemas and collections.
 
-# 7- Controllers (APIs or Routes)
+# 7. Controllers (APIs or Routes)
 
-## 1- Add Employee:
+## 1. Add Employee:
 
 ### Path:
 
@@ -81,7 +89,7 @@ ExpressJS, MongoDB, Mongoose, JWT, Cookies, PM2 and Jest.
     - Save the document to database.
     - Returns status code 201.
 
-## 2- Login:
+## 2. Login:
 
 ### Path:
 
@@ -100,7 +108,7 @@ ExpressJS, MongoDB, Mongoose, JWT, Cookies, PM2 and Jest.
     - Store tokens in cookies.
     - Return status code 200.
 
-## 3- Assign role
+## 3. Assign role
 
 ### Path:
 
@@ -123,7 +131,7 @@ ExpressJS, MongoDB, Mongoose, JWT, Cookies, PM2 and Jest.
     - Assign role for user and save to database.
     - Return status code 200.
 
-## 4- Generate access token
+## 4. Generate access token
 
 ### Path:
 
@@ -146,7 +154,7 @@ ExpressJS, MongoDB, Mongoose, JWT, Cookies, PM2 and Jest.
     - Generate new access token and store in cookies.
     - return status code 200.
 
-## 5- Logout
+## 5. Logout
 
 ### Path:
 
