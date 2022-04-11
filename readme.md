@@ -15,17 +15,17 @@ Fatura is a simple software service designed to authenticate, authorize users re
 
 # How to setup
 
-1. Clone it to your machine.
+1.  Clone it to your machine.
 
-   > git clone https://github.com/Abdulrahman402/Fatura.git
+        git clone https://github.com/Abdulrahman402/Fatura.git
 
-2. Install dependencies
+2.  Install dependencies
 
-   npm install
+    npm install
 
-3. Add .env files like example.env (development.env, test.env, production.env).
+3.  Add .env files like example.env (development.env, test.env, production.env).
 
-4. How to test
+4.  How to test
 
 - npm run test
 
@@ -52,7 +52,7 @@ Fatura is a simple software service designed to authenticate, authorize users re
 - isAdmin.js: Here we check if the request is coming from an admin user.
 - errors.js: Here we handle asyncronous errors.
 
-        Note: error.js works alongside the module "express-async-errors"
+       - Note: error.js works alongside the module "express-async-errors"
 
 5. Routes
 
@@ -89,6 +89,10 @@ Fatura is a simple software service designed to authenticate, authorize users re
     - Save the document to database.
     - Returns status code 201.
 
+### Diagram:
+
+![alt text](https://raw.githubusercontent.com/Abdulrahman402/Fatura/main/Diagrams/Add%20employee.png)
+
 ## 2. Login:
 
 ### Path:
@@ -107,6 +111,10 @@ Fatura is a simple software service designed to authenticate, authorize users re
     - Generate access and refresh tokens.
     - Store tokens in cookies.
     - Return status code 200.
+
+### Diagram:
+
+![alt text](https://github.com/Abdulrahman402/Fatura/blob/main/Diagrams/Login.png?raw=true)
 
 ## 3. Assign role
 
@@ -131,6 +139,10 @@ Fatura is a simple software service designed to authenticate, authorize users re
     - Assign role for user and save to database.
     - Return status code 200.
 
+### Diagram:
+
+![alt text](https://github.com/Abdulrahman402/Fatura/blob/main/Diagrams/Assign%20role.png?raw=true)
+
 ## 4. Generate access token
 
 ### Path:
@@ -154,6 +166,10 @@ Fatura is a simple software service designed to authenticate, authorize users re
     - Generate new access token and store in cookies.
     - return status code 200.
 
+### Diagram:
+
+![alt text](https://github.com/Abdulrahman402/Fatura/blob/main/Diagrams/Generate%20access%20token.png?raw=true)
+
 ## 5. Logout
 
 ### Path:
@@ -172,6 +188,10 @@ Fatura is a simple software service designed to authenticate, authorize users re
 
     - Invalidate all stored tokens.
     - return status code 200.
+
+### Diagram:
+
+![alt text](https://github.com/Abdulrahman402/Fatura/blob/main/Diagrams/Logout.png?raw=true)
 
 # Related to task
 
