@@ -9,6 +9,10 @@ describe("/generateAccessToken", () => {
   let token;
   let cookie;
 
+  // afterAll(async () => {
+  //   await User.deleteMany();
+  // });
+
   beforeEach(() => {
     token =
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MzAwMDUsImV4cCI6MTY4MTI4NzYwNX0.2UqOnQAgMHKTaPYS5UDa_e-v3WyI7vT8sCJxjZcRu9w";
@@ -52,6 +56,7 @@ describe("/generateAccessToken", () => {
       name: "Hani",
       email: "5@1.com",
       password: "123456789",
+      role: "Admin",
     });
     await user.save();
 

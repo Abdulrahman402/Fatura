@@ -6,16 +6,9 @@ const User = require("../Models/User");
 describe("/login", () => {
   let bodyObj;
 
-  async function starter() {
-    const user = new User({
-      email: "2@1.com",
-      password: "$2a$10$IVTdMNX2hsXbu5NPHhP6XuKSLyIwFuHstd31SoCv8UF50j/G9T6lK",
-      name: "Ali",
-    });
-    await user.save();
-  }
-
-  starter();
+  afterAll(async () => {
+    await User.deleteMany();
+  });
 
   beforeEach(() => {
     bodyObj = { email: "2@1.com", password: "123456789" };
@@ -43,13 +36,13 @@ describe("/login", () => {
   });
 
   it("should return 200 if completed", async () => {
+    const user = new User({
+      email: "2@1.com",
+      password: "$2a$10$IVTdMNX2hsXbu5NPHhP6XuKSLyIwFuHstd31SoCv8UF50j/G9T6lK",
+      name: "Ali",
+    });
+    await user.save();
     const res = await exec();
     expect(res.status).toBe(200);
   });
-
-  // async function ender() {
-  //   await User.deleteMany();
-  // }
-
-  // ender();
 });

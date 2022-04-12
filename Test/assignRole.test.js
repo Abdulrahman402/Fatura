@@ -6,6 +6,11 @@ describe("/assignRole", () => {
   let token;
   let role;
   let param;
+
+  afterAll(async () => {
+    await User.deleteMany();
+  });
+
   beforeEach(() => {
     token =
       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MjU2ODksImV4cCI6MTY4MTI4MzI4OX0.XxcGIf9EA8ZNS-f_cB7NlXaVrM-xfV5-GtAovXhv3gM";
@@ -63,9 +68,4 @@ describe("/assignRole", () => {
     const res = await exec();
     expect(res.status).toBe(200);
   });
-
-  // async function ender(User) {
-  //   await User.findOneAndRemove({ email: "3@1.com" });
-  // }
-  // ender(User);
 });

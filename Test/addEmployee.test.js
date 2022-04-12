@@ -7,11 +7,9 @@ describe("/addEmployee", () => {
   let token;
   let bodyObj;
 
-  const starter = async () => {
+  afterAll(async () => {
     await User.deleteMany();
-  };
-
-  starter();
+  });
 
   beforeEach(() => {
     token =
@@ -59,12 +57,4 @@ describe("/addEmployee", () => {
     const res = await exec();
     expect(res.status).toBe(400);
   });
-
-  // starter();
-
-  // async function ender() {
-  //   await User.deleteMany();
-  // }
-
-  // ender();
 });
