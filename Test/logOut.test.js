@@ -12,7 +12,7 @@ describe("/logOut", () => {
       .get("/user/logOut")
       .set(
         "authorization",
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwMmVhZTU5ZjkwODA3MmVkOTc4YWMiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE2NDk0MzE1NDJ9.6V7L5IDxruNyczf3r_zcTDRl1OjouW80sbqvb3BYREQ"
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MjU2ODksImV4cCI6MTY4MTI4MzI4OX0.XxcGIf9EA8ZNS-f_cB7NlXaVrM-xfV5-GtAovXhv3gM"
       );
     expect(res.status).toBe(200);
   });

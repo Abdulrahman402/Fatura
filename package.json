@@ -25,7 +25,7 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon app.js",
     "start": "NODE_ENV=production pm2 start app.js -i 0",
-    "test": "NODE_ENV=test jest --watchAll --verbose --maxWorkers=1 --forceExit --coverage"
+    "test": "NODE_ENV=test jest --watchAll --verbose  --coverage"
   },
   "repository": {
     "type": "git",

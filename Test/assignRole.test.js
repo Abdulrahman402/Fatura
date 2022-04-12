@@ -1,4 +1,5 @@
 const request = require("supertest");
+const User = require("../Models/User");
 let server = require("../server");
 
 describe("/assignRole", () => {
@@ -7,7 +8,7 @@ describe("/assignRole", () => {
   let param;
   beforeEach(() => {
     token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRmMzI1ZTZkYjkxZmM5ZjVmYTUwMzciLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk0MzI2NTF9.DYQMGkZn1J-VKbRtnR8FwfbHm81K6I1HYucTGVsi93w";
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MjU2ODksImV4cCI6MTY4MTI4MzI4OX0.XxcGIf9EA8ZNS-f_cB7NlXaVrM-xfV5-GtAovXhv3gM";
 
     role = "Employee";
     param = ":userId";
@@ -52,8 +53,19 @@ describe("/assignRole", () => {
   });
 
   it("should return 200 if user updated", async () => {
-    param = "62502eae59f908072ed978ac";
+    const user = new User({
+      name: "Ahmed",
+      password: "123456789",
+      email: "3@1.com",
+    });
+    await user.save();
+    param = user._id;
     const res = await exec();
     expect(res.status).toBe(200);
   });
+
+  // async function ender(User) {
+  //   await User.findOneAndRemove({ email: "3@1.com" });
+  // }
+  // ender(User);
 });

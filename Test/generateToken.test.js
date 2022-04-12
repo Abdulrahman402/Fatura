@@ -1,16 +1,20 @@
 const request = require("supertest");
 let server = require("../server");
 
+const User = require("../Models/User");
+
+const REFRESHTOKEN = require("../Services/JWT/generateRefresh");
+
 describe("/generateAccessToken", () => {
   let token;
   let cookie;
 
   beforeEach(() => {
     token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwMmVhZTU5ZjkwODA3MmVkOTc4YWMiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE2NDk1MDg4OTcsImV4cCI6MTY4MTA2NjQ5N30.zXBLOeWirui3qWCJFvTZ502gdC6EXaiOAGs1ECu7NeA";
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MzAwMDUsImV4cCI6MTY4MTI4NzYwNX0.2UqOnQAgMHKTaPYS5UDa_e-v3WyI7vT8sCJxjZcRu9w";
 
     cookie =
-      "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRmMzI1ZTZkYjkxZmM5ZjVmYTUwMzciLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk0NjgyNDMsImV4cCI6MTY4MTAyNTg0M30.DY7uxTVcZ2s8DZAJaseQlKd3h0q2AuiB7swxlfS8Y1Y";
+      "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MzAwMDUsImV4cCI6MTY4MTI4NzYwNX0.2UqOnQAgMHKTaPYS5UDa_e-v3WyI7vT8sCJxjZcRu9w";
   });
   const exec = async () => {
     return await request(server)
@@ -39,17 +43,21 @@ describe("/generateAccessToken", () => {
   });
 
   it("should return 404 if user not found", async () => {
-    token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUxODUzODAyOGZlMjMzNTUzZDk5OWMiLCJpYXQiOjE2NDk1MDk3MTIsImV4cCI6MTY4MTA2NzMxMn0.F3TWvhvztm1lDyypGwU_P8EAV2Ezam_HBTmNMCQm8XM";
-    cookie =
-      "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUxODUzODAyOGZlMjMzNTUzZDk5OWMiLCJpYXQiOjE2NDk1MDk3MTIsImV4cCI6MTY4MTA2NzMxMn0.F3TWvhvztm1lDyypGwU_P8EAV2Ezam_HBTmNMCQm8XM";
     const res = await exec();
     expect(res.status).toBe(404);
   });
 
   it("should return 200 if token generated", async () => {
-    token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRmMzI1ZTZkYjkxZmM5ZjVmYTUwMzciLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk0NjgyNDMsImV4cCI6MTY4MTAyNTg0M30.DY7uxTVcZ2s8DZAJaseQlKd3h0q2AuiB7swxlfS8Y1Y";
+    const user = new User({
+      name: "Hani",
+      email: "5@1.com",
+      password: "123456789",
+    });
+    await user.save();
+
+    const refreshToken = await REFRESHTOKEN(user);
+    token = `Bearer ${refreshToken}`;
+    cookie = `refreshToken=${refreshToken}`;
     const res = await exec();
     expect(res.status).toBe(200);
   });

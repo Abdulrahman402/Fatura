@@ -1,14 +1,22 @@
 const request = require("supertest");
 let server = require("../server");
 
+const User = require("../Models/User");
+
 describe("/addEmployee", () => {
   let token;
   let bodyObj;
 
+  const starter = async () => {
+    await User.deleteMany();
+  };
+
+  starter();
+
   beforeEach(() => {
     token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjRmMzI1ZTZkYjkxZmM5ZjVmYTUwMzciLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk0MzI2NTF9.DYQMGkZn1J-VKbRtnR8FwfbHm81K6I1HYucTGVsi93w";
-    bodyObj = { email: "3@1.com", password: "123456789", name: "Omar" };
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlMWY1OGY4NjkxNzk3YmU4YTAiLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NDk3MjU2ODksImV4cCI6MTY4MTI4MzI4OX0.XxcGIf9EA8ZNS-f_cB7NlXaVrM-xfV5-GtAovXhv3gM";
+    bodyObj = { email: "1@1.com", password: "123456789", name: "Omar" };
   });
 
   const exec = async () => {
@@ -31,7 +39,7 @@ describe("/addEmployee", () => {
 
   it("should return 403 if user not admin", async () => {
     token =
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjUwMmVhZTU5ZjkwODA3MmVkOTc4YWMiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE2NDk0MzE1NDJ9.6V7L5IDxruNyczf3r_zcTDRl1OjouW80sbqvb3BYREQ";
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjU0ZDBlZGY1OGY4NjkxNzk3YmU4YTMiLCJyb2xlIjoiRW1wbG95ZWUiLCJpYXQiOjE2NDk3MjU3NTAsImV4cCI6MTY4MTI4MzM1MH0.gEzlDNVQW3jDbAObmfpJlWTYdp7lKAt13lQjaKS-idg";
     const res = await exec();
     expect(res.status).toBe(403);
   });
@@ -42,14 +50,21 @@ describe("/addEmployee", () => {
     expect(res.status).toBe(400);
   });
 
-  it("should return 400 if email already exists", async () => {
-    bodyObj.email = "1@1.com";
-    const res = await exec();
-    expect(res.status).toBe(400);
-  });
-
   it("should return 201 if completed", async () => {
     const res = await exec();
     expect(res.status).toBe(201);
   });
+
+  it("should return 400 if email already exists", async () => {
+    const res = await exec();
+    expect(res.status).toBe(400);
+  });
+
+  // starter();
+
+  // async function ender() {
+  //   await User.deleteMany();
+  // }
+
+  // ender();
 });

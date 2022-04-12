@@ -1,6 +1,6 @@
 # Fatura
 
-Fatura is a simple software service designed to authenticate, authorize users requests and handle roles permissions.
+Fatura is a simple software service designed to authenticate, authorize users requests and handle roles and permissions.
 
 # Technologies used
 
@@ -21,13 +21,17 @@ Fatura is a simple software service designed to authenticate, authorize users re
 
 2.  Install dependencies
 
-    npm install
+        npm install
 
 3.  Add .env files like example.env (development.env, test.env, production.env).
 
-4.  How to test
+# How to test
 
-- npm run test
+        npm run test
+
+# How to start
+
+        npm run dev
 
 # Files structure & details
 
