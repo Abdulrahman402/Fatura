@@ -9,9 +9,9 @@ describe("/generateAccessToken", () => {
   let token;
   let cookie;
 
-  // afterAll(async () => {
-  //   await User.deleteMany();
-  // });
+  afterAll(async () => {
+    await User.deleteMany();
+  });
 
   beforeEach(() => {
     token =
