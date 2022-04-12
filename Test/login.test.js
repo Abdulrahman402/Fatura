@@ -23,12 +23,6 @@ describe("/login", () => {
     expect(res.status).toBe(400);
   });
 
-  it("should return 400 if password or email not valid", async () => {
-    bodyObj.password = "123456788";
-    const res = await exec();
-    expect(res.status).toBe(400);
-  });
-
   it("should return 400 if user not found", async () => {
     bodyObj.email = "10@1.com";
     const res = await exec();
@@ -44,5 +38,11 @@ describe("/login", () => {
     await user.save();
     const res = await exec();
     expect(res.status).toBe(200);
+  });
+
+  it("should return 400 if password or email not valid", async () => {
+    bodyObj.password = "123456788";
+    const res = await exec();
+    expect(res.status).toBe(400);
   });
 });
